@@ -22,21 +22,24 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
     // structure API query
     var year = app.getArgument('Year'),
-        make = app.getArgument('Make'),
-        model = app.getArgument('Model');
+      make = app.getArgument('Make'),
+      model = app.getArgument('Model');
 
     var factPrefix = "Didn't work";
     let fact = "Value your vehicle!";
 
     var url = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
 
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {    
-      factPrefix = data[0].weightedAverageValue;
-    });
+    console.log(url);
 
-        /*
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        factPrefix = data[0].weightedAverageValue;
+        console.log(data);
+      });
+
+    /*
 
     console.log(app.getArgument('Year'));
 
