@@ -5,7 +5,7 @@ var expressApp = express();
 expressApp.use(bodyParser.json());
 
 // include constants
-require('./_CONSTANTS.js');
+//require('./_CONSTANTS.js');
 
 expressApp.set('port', (process.env.PORT || 5000));
 
