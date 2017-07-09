@@ -1,5 +1,4 @@
 var express = require('express');
-var google = require('actions-on-google').ApiAiApp;
 var bodyParser = require('body-parser');
 var expressApp = express();
 expressApp.use(bodyParser.json());
