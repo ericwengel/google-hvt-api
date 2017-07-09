@@ -1,4 +1,5 @@
 var express = require('express');
+var fetch = require('node-fetch');
 var google = require('actions-on-google').ApiAiApp;
 var bodyParser = require('body-parser');
 var expressApp = express();
