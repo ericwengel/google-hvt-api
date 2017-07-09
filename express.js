@@ -17,7 +17,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
     response
   });
 
-  function tellValue(GoogleApp) {
+  function tellValue(app) {
 
     // structure API query
     var year = app.getArgument('Year'),
