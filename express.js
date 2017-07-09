@@ -36,6 +36,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
             return res.text();
         }).then(function(data) {
             console.log(data);
+            console.log(app.getArgument('Year'));
         });
 
     console.log(request);
