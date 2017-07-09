@@ -1,0 +1,23 @@
+{
+  "name": "google_home_valuation",
+  "version": "1.0.0",
+  "description": "google home test",
+  "main": "express.js",
+  "scripts": {
+    "start": "node express.js"
+  },
+  "engines": {
+    "node": "^8.1.3"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "actions-on-google": "^1.0.0",
+    "body-parser": "^1.17.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DKolle, EEngel, ARutledge",
+  "license": "ISC"
+}
