@@ -19,7 +19,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
   function tellValue(app) {
 
-    console.log(JSON.stringify(app));
+    console.log(app);
 
     let rawData = app.getRawInput();
     let matchVehicle = rawData.match(/\d{4}.*$/ig);
