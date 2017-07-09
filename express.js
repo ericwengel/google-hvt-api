@@ -11,7 +11,7 @@ expressApp.get('/', function (request, response) {
 });
 
 // answer request
-expressApp.post('/action', function(request, response) {
+expressApp.post('/google-hvt-api', function(request, response) {
 
   var GoogleApp = new google({request, response});
 
