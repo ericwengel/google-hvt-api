@@ -35,7 +35,18 @@ expressApp.post('/google-hvt-api', function (request, response) {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        factPrefix = data[0].weightedAverageValue;
+        var factPrefix = data[0].weightedAverageValue;        
+        if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
+          app.ask(app.buildRichResponse()
+            .addSimpleResponse(factPrefix)
+            .addBasicCard(app.buildBasicCard(fact)
+              .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
+            .addSimpleResponse('Would you like to value another vehicle Dan?')
+            .addSuggestions(['Sure', 'No thanks']));
+        } else {
+          app.ask('I have no idea what you just said');
+        }
+
         console.log(data);
       });
 
@@ -55,16 +66,6 @@ expressApp.post('/google-hvt-api', function (request, response) {
     }
      */
 
-    if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
-      app.ask(app.buildRichResponse()
-        .addSimpleResponse(factPrefix)
-        .addBasicCard(app.buildBasicCard(fact)
-          .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
-        .addSimpleResponse('Would you like to value another vehicle Dan?')
-        .addSuggestions(['Sure', 'No thanks']));
-    } else {
-      app.ask('I have no idea what you just said');
-    }
   }
 
   let actionMap = new Map();
