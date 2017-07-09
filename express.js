@@ -1,5 +1,5 @@
 var express = require('express');
-var fetch = require('node-fetch');
+var $ = require('jQuery');
 var google = require('actions-on-google').ApiAiApp;
 var bodyParser = require('body-parser');
 var expressApp = express();
@@ -28,27 +28,40 @@ expressApp.post('/google-hvt-api', function (request, response) {
     var factPrefix = "Didn't work";
     let fact = "Value your vehicle!";
 
-    var url = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
+    var strUrl = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
 
     console.log(url);
 
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        var factPrefix = data[0].weightedAverageValue;        
-        if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
-          app.ask(app.buildRichResponse()
-            .addSimpleResponse(factPrefix)
-            .addBasicCard(app.buildBasicCard(fact)
-              .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
-            .addSimpleResponse('Would you like to value another vehicle Dan?')
-            .addSuggestions(['Sure', 'No thanks']));
-        } else {
-          app.ask('I have no idea what you just said');
-        }
+    function getWhatever() {
+      // strUrl is whatever URL you need to call
+      var strReturn = "";
 
-        console.log(data);
+      jQuery.ajax({
+        url: strUrl,
+        success: function (html) {
+          strReturn = html;
+        },
+        async: false
       });
+
+      return strReturn;
+    }
+
+    var test = getWhatever();
+
+    console.log(test);
+
+    var factPrefix = test[0].weightedAverageValue;
+    if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
+      app.ask(app.buildRichResponse()
+        .addSimpleResponse(factPrefix)
+        .addBasicCard(app.buildBasicCard(fact)
+          .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
+        .addSimpleResponse('Would you like to value another vehicle Dan?')
+        .addSuggestions(['Sure', 'No thanks']));
+    } else {
+      app.ask('I have no idea what you just said');
+    }
 
     /*
 
