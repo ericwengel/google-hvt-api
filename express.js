@@ -36,7 +36,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
       // strUrl is whatever URL you need to call
       var strReturn = "";
 
-      jQuery.ajax({
+      $.ajax({
         url: strUrl,
         success: function (html) {
           strReturn = html;
