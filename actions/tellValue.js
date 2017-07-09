@@ -34,4 +34,4 @@ function tellValue(app) {
 
 let actionMap = new Map();
 actionMap.set('tell.value', tellValue);
-GoogleApp.handleRequest(actionMap);36
+GoogleApp.handleRequest(actionMap);
