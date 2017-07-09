@@ -19,6 +19,24 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
   function tellValue(app) {
 
+    // structure API query
+    var year = app.getArgument('Year'),
+        make = app.getArgument('Make'),
+        model = app.getArgument('Model');
+
+    var factPrefix = "Didn't work";
+    let fact = "Value your vehicle!";
+
+    var url = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {    
+      factPrefix = data[0].weightedAverageValue;
+    });
+
+        /*
+
     console.log(app.getArgument('Year'));
 
     let rawData = app.getRawInput();
@@ -31,6 +49,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
     } else {
       factPrefix = 'Sorry, we couldn\'t find a value for that vehicle. Please try again.';
     }
+     */
 
     if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
       app.ask(app.buildRichResponse()
