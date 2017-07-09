@@ -37,7 +37,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
         console.log(app.getArgument('Year'));
 
 
-        var carValue = `The ${data[0].text} is worth ${data[0].weightedAverageValue}`;
+        var carValue = `The ${data[0].text} is worth $${data[0].weightedAverageValue} dollars`;
         if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
           app.ask(app.buildRichResponse()
             .addSimpleResponse(carValue)
