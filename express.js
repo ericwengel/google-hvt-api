@@ -1,5 +1,5 @@
 var express = require('express');
-var $ = require('jQuery');
+var $ = require('jquery');
 var google = require('actions-on-google').ApiAiApp;
 var bodyParser = require('body-parser');
 var expressApp = express();
