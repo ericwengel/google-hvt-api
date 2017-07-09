@@ -1,5 +1,4 @@
 var express = require('express');
-var $ = require('jquery');
 var google = require('actions-on-google').ApiAiApp;
 var bodyParser = require('body-parser');
 var expressApp = express();
@@ -18,36 +17,29 @@ expressApp.post('/google-hvt-api', function (request, response) {
     response
   });
 
-  function tellValue(app) {
+  function tellValue(GoogleApp) {
 
     // structure API query
     var year = app.getArgument('Year'),
       make = app.getArgument('Make'),
       model = app.getArgument('Model');
 
+      console.log(`${year} ${make} ${model}`);
+
     var factPrefix = "Didn't work";
     let fact = "Value your vehicle!";
 
     var strUrl = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
+    var request = fetch(strUrl)
+        .then(function(res) {
+            return res.text();
+        }).then(function(data) {
+            console.log(data);
+        });
 
-    function getWhatever() {
-      // strUrl is whatever URL you need to call
-      var strReturn = "";
+    console.log(request);
 
-      $.ajax({
-        url: strUrl,
-        success: function (html) {
-          strReturn = html;
-        },
-        async: false
-      });
-
-      return strReturn;
-    }
-
-    var test = getWhatever();
-
-    console.log(test);
+/*
 
     var factPrefix = test[0].weightedAverageValue;
     if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {

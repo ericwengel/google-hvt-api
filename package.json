@@ -13,14 +13,14 @@
     "express": "^4.15.3",
     "actions-on-google": "^1.0.0",
     "body-parser": "^1.17.2",
-    "jquery": "^3.2.1"
+    "node-fetch": "^1.7.1"
   },
   "devDependencies": {
     "express": "^4.15.3",
     "actions-on-google": "^1.0.0",
     "body-parser": "^1.17.2",
     "heroku-cli": "^6.12.6",
-    "jquery": "^3.2.1"
+    "node-fetch": "^1.7.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
