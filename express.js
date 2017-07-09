@@ -30,8 +30,6 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
     var strUrl = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
 
-    console.log(url);
-
     function getWhatever() {
       // strUrl is whatever URL you need to call
       var strReturn = "";
