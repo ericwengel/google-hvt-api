@@ -4,6 +4,9 @@ var bodyParser = require('body-parser');
 var expressApp = express();
 expressApp.use(bodyParser.json());
 
+// include constants
+require('./_CONSTANTS.js');
+
 expressApp.set('port', (process.env.PORT || 5000));
 
 expressApp.get('/', function (request, response) {

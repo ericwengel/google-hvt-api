@@ -3,9 +3,10 @@ var GoogleApp = new google({
     response
 });
 
-function tellValue(GoogleApp) {
+function tellValue(app) {
 
-    var app = GoogleApp;
+    console.log(JSON.stringify(app));
+
     let rawData = app.getRawInput();
     let matchVehicle = rawData.match(/\d{4}.*$/ig);
     let factPrefix;
