@@ -30,7 +30,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
     var strUrl = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
     var request = fetch(strUrl)
       .then(function (res) {
-        return res.text();
+        return res.json();
       }).then(function (data) {
         console.log(data);
         console.log(data[0]);
