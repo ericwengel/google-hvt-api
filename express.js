@@ -63,7 +63,10 @@ expressApp.post('/google-hvt-api', function (request, response) {
             make = vehicleData.make.id,
             model = vehicleData.model.id;
 
-        return fetch(`${vehicleInfo}${year}/${make}/${model}`); // make a 2nd request and return a promise
+        var valueRequestURLBuilder = `${vehicleInfo}${year}/${make}/${model}`;
+
+        console.log(valueRequestURLBuilder);
+        return fetch(valueRequestURLBuilder); // make a 2nd request and return a promise
         
       })
       .then(function (response) {
