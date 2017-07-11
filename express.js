@@ -27,61 +27,43 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
     console.log(`${year} ${make} ${model}`);
 
-    var strUrl = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/1965/122/3023/397/186/51";
-    var request = fetch(strUrl)
-      .then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        console.log(data);
-        console.log(data[0]);
-        console.log(app.getArgument('Year'));
-
-
-        var carValue = `The ${data[0].text} is worth $${data[0].weightedAverageValue} dollars`;
-        if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
-          app.ask(app.buildRichResponse()
-            .addSimpleResponse(carValue)
-            .addBasicCard(app.buildBasicCard(carValue)
-              .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
-            .addSimpleResponse('Would you like to value another vehicle Dan?')
-            .addSuggestions(['Sure', 'No thanks']));
-        } else {
-          app.ask('I have no idea what you just said');
-        }
-
-      });
-
+    // shape decode strings
+    var vehicleString = {
+      year: app.getArgument('Year'),
+      make: app.getArgument('Make'),
+      model: app.getArgument('Model')
+    };
+    var vehicleToDecode = new FormData();
+    vehicleToDecode.append("json", JSON.stringify(vehicleString))
     
-    /*
+    // first decode URL
+    var decodeVehicle = 'https://www.hagerty.com/apps/valuationtools/Api/Search/Decode/Vehicle';
+    var vehicleInfo = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/";
 
-        var factPrefix = test[0].weightedAverageValue;
-        if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
-          app.ask(app.buildRichResponse()
-            .addSimpleResponse(factPrefix)
-            .addBasicCard(app.buildBasicCard(fact)
-              .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
-            .addSimpleResponse('Would you like to value another vehicle Dan?')
-            .addSuggestions(['Sure', 'No thanks']));
-        } else {
-          app.ask('I have no idea what you just said');
-        }
+    var result = fetch(decodeVehicle, {        
+        method: 'post',
+        body: vehicleToDecode
+      }).then(function (response) {        
+        // decode response
+        return response.json(); // pass the data as promise to next then block
+      }).then(function (vehicleData) {
 
-        /*
+        // take decode data and make request to api
+        var year = vehicleData.year.id,
+            make = vehicleData.make.id,
+            model = vehicleData.make.id;
 
-        console.log(app.getArgument('Year'));
+        return fetch(`${vehicleInfo}${year}${make}${model}`); // make a 2nd request and return a promise
 
-        let rawData = app.getRawInput();
-        let matchVehicle = rawData.match(/\d{4}.*$/ig);
-        let factPrefix;
-        let fact = "Value your vehicle!";
-
-        if (app.getRawInput().indexOf('ford mustang') > 1) {
-          factPrefix = "Why yes, your" + matchVehicle + " is worth $57,000. Impressive...most impressive.";
-        } else {
-          factPrefix = 'Sorry, we couldn\'t find a value for that vehicle. Please try again.';
-        }
-         */
-
+      })
+      .then(function (response) {
+        console.log(response);
+        //return response.json();
+      })
+      .catch(function (error) {
+        console.log('Request failed', error)
+      });
+      
   }
 
   let actionMap = new Map();
