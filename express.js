@@ -1,5 +1,6 @@
 var express = require('express');
 var google = require('actions-on-google').ApiAiApp;
+var FormData = require('form-data');
 var fetch = require('node-fetch');
 var bodyParser = require('body-parser');
 var expressApp = express();
@@ -63,7 +64,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
       .catch(function (error) {
         console.log('Request failed', error)
       });
-      
+
   }
 
   let actionMap = new Map();
