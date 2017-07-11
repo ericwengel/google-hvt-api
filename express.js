@@ -49,13 +49,16 @@ expressApp.post('/google-hvt-api', function (request, response) {
         return response.json(); // pass the data as promise to next then block
       }).then(function (vehicleData) {
 
+        console.log(vehicleData);
+
+        /*
         // take decode data and make request to api
         var year = vehicleData.year.id,
             make = vehicleData.make.id,
             model = vehicleData.make.id;
 
         return fetch(`${vehicleInfo}${year}${make}${model}`); // make a 2nd request and return a promise
-
+        */
       })
       .then(function (response) {
         console.log(response);
