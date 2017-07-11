@@ -67,8 +67,10 @@ expressApp.post('/google-hvt-api', function (request, response) {
         
       })
       .then(function (response) {
-        console.log(response);
-        //return response.json();
+        constole.log("------------ RESPONSE FROM 2ND CALL RECEIVED -------")
+        return response.json();
+      }).then(function (vehicleValue) {
+        console.log(vehicleValue);
       })
       .catch(function (error) {
         console.log('Request failed', error)
