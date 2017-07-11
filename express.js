@@ -34,8 +34,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
       make: app.getArgument('Make'),
       model: app.getArgument('Model')
     };
-    var vehicleToDecode = new FormData();
-    vehicleToDecode.append("json", JSON.stringify(vehicleString))
+    var vehicleToDecode = JSON.stringify(vehicleString);
     
     // first decode URL
     var decodeVehicle = 'https://www.hagerty.com/apps/valuationtools/Api/Search/Decode/Vehicle';
@@ -43,6 +42,10 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
     var result = fetch(decodeVehicle, {        
         method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
         body: vehicleToDecode
       }).then(function (response) {        
         // decode response
