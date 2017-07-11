@@ -55,8 +55,9 @@ expressApp.post('/google-hvt-api', function (request, response) {
         console.log('------------------');
         console.log(vehicleData);
         console.log(vehicleData.year);
+        console.log(vehicleData.year.id);
         console.log('------------------');
-        
+
         /*
         // take decode data and make request to api
         var year = vehicleData.year.id,
