@@ -37,7 +37,7 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
     // first decode URL
     var decodeVehicle = 'https://www.hagerty.com/apps/valuationtools/Api/Search/Decode/Vehicle';
-    var vehicleInfo = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/";
+    var vehicleInfoURL = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/1/";
 
     // make first call
     var result = fetch(decodeVehicle, {
@@ -63,25 +63,11 @@ expressApp.post('/google-hvt-api', function (request, response) {
           make = vehicleData.make.id,
           model = vehicleData.model.id;
 
-        var valueString = {
-          year: year,
-          make: make,
-          model: model
-        };
-        var valueToRequest = JSON.stringify(vehicleString);
-
-        var valueRequestURLBuilder = `${vehicleInfo}`;
-
-        console.log(valueRequestURLBuilder);
+        var valueRequestURLBuilder = `${vehicleInfoURL}${year}/${make}/${model}`;
 
         // make second call
         return fetch(valueRequestURLBuilder, {
-          method: 'post',
-          headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-          },
-          body: valueToRequest
+          method: 'get'
         }); // make a 2nd request and return a promise
 
       })
