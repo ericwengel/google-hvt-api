@@ -48,15 +48,8 @@ expressApp.post('/google-hvt-api', function (request, response) {
         },
         body: vehicleToDecode
       }).then(function (response) {
-        // first call response
-        return response.json(); // pass the data as promise to next then block
+        return response.json();
       }).then(function (vehicleData) {
-
-        console.log('------------------');
-        console.log(vehicleData);
-        console.log(vehicleData.year);
-        console.log(vehicleData.year.id);
-        console.log('------------------');
 
         // take decode data and make request to api
         var year = vehicleData.year.id,
@@ -68,22 +61,45 @@ expressApp.post('/google-hvt-api', function (request, response) {
         // make second call
         return fetch(valueRequestURLBuilder, {
           method: 'get'
-        }); // make a 2nd request and return a promise
+        });
 
       })
       .then(function (response) {
-        // response from 2nd call
-        console.log("------------ RESPONSE FROM 2ND CALL RECEIVED -------")
         return response.json();
       }).then(function (vehicleValue) {
         //display 2nd call
         console.log(vehicleValue);
+
+        // first value
+        var firstCarFullName = data[0].text,
+            firstCarAverageValue = numberWithCommas(data[0].weightedAverageValue);
+
+        var carValue = `The ${firstCarFullName} is worth $${firstCarAverageValue} dollars`;
+        if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
+          app.ask(app.buildRichResponse()
+            .addSimpleResponse(carValue)
+            .addBasicCard(app.buildBasicCard(carValue)
+              .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
+            .addSimpleResponse('Would you like to value another vehicle Dan?')
+            .addSuggestions(['Sure', 'No thanks']));
+        } else {
+          app.ask('I have no idea what you just said');
+        }
+
+        function numberWithCommas(x) {
+          var parts = x.toString().split(".");
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          return parts.join(".");
+        }
+
       })
       .catch(function (error) {
         console.log('Request failed', error)
       });
 
   }
+
+
 
   let actionMap = new Map();
   actionMap.set('tell.value', tellValue);
