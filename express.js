@@ -71,8 +71,8 @@ expressApp.post('/google-hvt-api', function (request, response) {
         console.log(vehicleValue);
 
         // first value
-        var firstCarFullName = data[0].text,
-            firstCarAverageValue = numberWithCommas(data[0].weightedAverageValue);
+        var firstCarFullName = vehicleValue[0].text,
+            firstCarAverageValue = numberWithCommas(vehicleValue[0].weightedAverageValue);
 
         var carValue = `The ${firstCarFullName} is worth $${firstCarAverageValue} dollars`;
         if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
