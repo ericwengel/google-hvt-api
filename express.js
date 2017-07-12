@@ -1,6 +1,5 @@
 var express = require('express');
 var google = require('actions-on-google').ApiAiApp;
-var FormData = require('form-data');
 var fetch = require('node-fetch');
 var bodyParser = require('body-parser');
 var expressApp = express();
@@ -35,20 +34,21 @@ expressApp.post('/google-hvt-api', function (request, response) {
       model: app.getArgument('Model')
     };
     var vehicleToDecode = JSON.stringify(vehicleString);
-    
+
     // first decode URL
     var decodeVehicle = 'https://www.hagerty.com/apps/valuationtools/Api/Search/Decode/Vehicle';
     var vehicleInfo = "https://eservices.hagerty.com/Api/Vehicle/v3/e72c154d/US/Vehicles/";
 
-    var result = fetch(decodeVehicle, {        
+    // make first call
+    var result = fetch(decodeVehicle, {
         method: 'post',
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
         body: vehicleToDecode
-      }).then(function (response) {        
-        // decode response
+      }).then(function (response) {
+        // first call response
         return response.json(); // pass the data as promise to next then block
       }).then(function (vehicleData) {
 
@@ -60,19 +60,37 @@ expressApp.post('/google-hvt-api', function (request, response) {
 
         // take decode data and make request to api
         var year = vehicleData.year.id,
-            make = vehicleData.make.id,
-            model = vehicleData.model.id;
+          make = vehicleData.make.id,
+          model = vehicleData.model.id;
 
-        var valueRequestURLBuilder = `${vehicleInfo}${year}/${make}/${model}`;
+        var valueString = {
+          year: year,
+          make: make,
+          model: model
+        };
+        var valueToRequest = JSON.stringify(vehicleString);
+
+        var valueRequestURLBuilder = `${vehicleInfo}`;
 
         console.log(valueRequestURLBuilder);
-        return fetch(valueRequestURLBuilder); // make a 2nd request and return a promise
-        
+
+        // make second call
+        return fetch(valueRequestURLBuilder, {
+          method: 'post',
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: valueToRequest
+        }); // make a 2nd request and return a promise
+
       })
       .then(function (response) {
+        // response from 2nd call
         console.log("------------ RESPONSE FROM 2ND CALL RECEIVED -------")
         return response.json();
       }).then(function (vehicleValue) {
+        //display 2nd call
         console.log(vehicleValue);
       })
       .catch(function (error) {
