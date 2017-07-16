@@ -71,13 +71,42 @@ function hvtValueResponse(request, response) {
 
                 var carValue = `The ${firstCarFullName} is worth $${firstCarAverageValue}`;
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
-                    app.ask(app.buildRichResponse()
+                    
+                    app.askWithList(app.buildRichResponse()
+                        .addSimpleResponse('Alright')
+                        .addSuggestions(
+                            ['Basic Card', 'List', 'Carousel', 'Suggestions']),
+                        // Build a list
+                        app.buildList('Things to learn about')
+                        // Add the first item to the list
+                        .addItems([app.buildOptionItem('MATH_AND_PRIME', ['math', 'math and prime', 'prime numbers', 'prime'])
+                            .setTitle('Math & prime numbers')
+                            .setDescription('42 is an abundant number because the sum of its ' +
+                                'proper divisors 54 is greater…')
+                            .setImage('http://example.com/math_and_prime.jpg', 'Math & prime numbers'),
+
+                            app.buildOptionItem('EGYPT', ['religion', 'egpyt', 'ancient egyptian'])
+                            .setTitle('Ancient Egyptian religion')
+                            .setDescription('42 gods who ruled on the fate of the dead in the ' +
+                                'afterworld. Throughout the under…')
+                            .setImage('http://example.com/egypt', 'Egypt'),
+
+                            app.buildOptionItem('RECIPES', ['recipes', 'recipe', '42 recipes'])
+                            .setTitle('42 recipes with 42 ingredients')
+                            .setDescription('Here\'s a beautifully simple recipe that\'s full ' +
+                                'of flavor! All you need is some ginger and…')
+                            .setImage('http://example.com/recipe', 'Recipe')
+                        ])
+                    )
+
+                    /*app.ask(app.buildRichResponse()
                         .addSimpleResponse(carValue)
-                        /*.addBasicCard(app.buildBasicCard(carValue)
+                        .addBasicCard(app.buildBasicCard(carValue)
                             .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
-                            */
                         .addSimpleResponse(constants.USER_PROMPTS.SUCCESS_NEXT));
                     //.addSuggestions(['Sure', 'No thanks']));
+                    */
+
                 } else {
                     // figure out device compatibility fallback here
                 }
