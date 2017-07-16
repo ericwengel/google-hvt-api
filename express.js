@@ -18,7 +18,7 @@ expressApp.get('/', function (request, response) {
 
 // answer request
 expressApp.post('/google-hvt-api', function (request, response) {
-  hvt.hvtValueResponse(request, response);
+  hvt(request, response);
 });
 
 var server = expressApp.listen(expressApp.get('port'), function () {
