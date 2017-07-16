@@ -4,6 +4,7 @@ var fetch = require('node-fetch');
 /**
  * User Functions
  */
+var constants = require('./_CONSTANTS.js');
 var numberWithCommas = require('../helpers/numbers-with-commas.js');
 /** END USER FUNCTIONS */
 
