@@ -68,9 +68,17 @@ function hvtValueResponse(request, response) {
                 // build list of vehicles
                 var listSelector = [];
                 for (var i = 0; i < vehicleValue.length; i++) {
+
+                    console.log('vehiclevalue', vehicleValue.length);
+
                     var valueList = vehicleValue[i];
+
+                    console.log('valueList', valueList);
+
                     for (var key in valueList) {
                         var value = valueList[key];
+
+                        console.log('value', value);
                         // don't allow blank values
                         if(value.weightedAverageValue != 'null'){
                             listSelector.push(
