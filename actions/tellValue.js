@@ -46,6 +46,9 @@ function hvtValueResponse(request, response) {
                 return response.json();
             }).then(function (vehicleData) {
 
+                //display 1nd call
+                console.log('First Call: ', vehicleValue);
+
                 // take decode data and make request to api
                 var year = vehicleData.year.id,
                     make = vehicleData.make.id,
@@ -63,7 +66,7 @@ function hvtValueResponse(request, response) {
                 return response.json();
             }).then(function (vehicleValue) {
                 //display 2nd call
-                console.log(vehicleValue);
+                console.log('Second Call: ', vehicleValue);
 
                 // build list of vehicles
                 var listSelector = [];
