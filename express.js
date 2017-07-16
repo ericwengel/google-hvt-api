@@ -5,10 +5,12 @@ var bodyParser = require('body-parser');
 var expressApp = express();
 expressApp.use(bodyParser.json());
 
-expressApp.set('port', (process.env.PORT || 5000));
+var constants = require('./_CONSTANTS.js');
+
+expressApp.set('port', (process.env.PORT || constants.EXPRESS_DEFAULTS.DEFAULT_PORT));
 
 expressApp.get('/', function (request, response) {
-  response.send("Hello World");
+  require('./actions/hello-world.js')(request, response);
 });
 
 // answer request
@@ -98,8 +100,6 @@ expressApp.post('/google-hvt-api', function (request, response) {
       });
 
   }
-
-
 
   let actionMap = new Map();
   actionMap.set('tell.value', tellValue);
