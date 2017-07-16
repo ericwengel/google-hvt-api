@@ -65,38 +65,29 @@ function hvtValueResponse(request, response) {
                 //display 2nd call
                 console.log(vehicleValue);
 
+                var listSelector;
+                vehicleValue.forEach(function (element) {
+                    listSelector.push(
+                        app.buildOptionItem('VALUE')
+                        .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
+                        .setDescription(`${element.text}`)
+                        .setImage('http://example.com/math_and_prime.jpg', 'This car')
+                    )
+                });
+
                 // first value
                 var firstCarFullName = vehicleValue[0].text,
                     firstCarAverageValue = numberWithCommas(vehicleValue[0].weightedAverageValue);
 
                 var carValue = `The ${firstCarFullName} is worth $${firstCarAverageValue}`;
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
-                    
+
                     app.askWithList(app.buildRichResponse()
-                        .addSimpleResponse('Alright')
-                        .addSuggestions(
-                            ['Basic Card', 'List', 'Carousel', 'Suggestions']),
+                        .addSimpleResponse('Alright'),
                         // Build a list
                         app.buildList('Things to learn about')
                         // Add the first item to the list
-                        .addItems([app.buildOptionItem('MATH_AND_PRIME', ['math', 'math and prime', 'prime numbers', 'prime'])
-                            .setTitle('Math & prime numbers')
-                            .setDescription('42 is an abundant number because the sum of its ' +
-                                'proper divisors 54 is greater…')
-                            .setImage('http://example.com/math_and_prime.jpg', 'Math & prime numbers'),
-
-                            app.buildOptionItem('EGYPT', ['religion', 'egpyt', 'ancient egyptian'])
-                            .setTitle('Ancient Egyptian religion')
-                            .setDescription('42 gods who ruled on the fate of the dead in the ' +
-                                'afterworld. Throughout the under…')
-                            .setImage('http://example.com/egypt', 'Egypt'),
-
-                            app.buildOptionItem('RECIPES', ['recipes', 'recipe', '42 recipes'])
-                            .setTitle('42 recipes with 42 ingredients')
-                            .setDescription('Here\'s a beautifully simple recipe that\'s full ' +
-                                'of flavor! All you need is some ginger and…')
-                            .setImage('http://example.com/recipe', 'Recipe')
-                        ])
+                        .addItems(listSelector)
                     )
 
                     /*app.ask(app.buildRichResponse()
