@@ -71,23 +71,14 @@ function hvtValueResponse(request, response) {
 
                     console.log('vehiclevalue', vehicleValue.length);
 
-                    var valueList = vehicleValue[i];
-
-                    console.log('valueList', valueList);
-
-                    for (var key in valueList) {
-                        var value = valueList[key];
-
-                        console.log('value', value);
-                        // don't allow blank values
-                        if(value.hasOwnProperty('weightedAveragevalue') && value.weightedAverageValue != 'null'){
-                            listSelector.push(
-                                app.buildOptionItem('VALUE', ['test', 'test2'])
-                                .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
-                                .setDescription(`${value.text}`)
-                                //.setImage('http://example.com/math_and_prime.jpg', ``)
-                            )
-                        }
+                    var valueList = vehicleValue[i];                   
+                    if(valueList.weightedAverageValue != 'null'){
+                        listSelector.push(
+                            app.buildOptionItem('VALUE', ['test', 'test2'])
+                            .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
+                            .setDescription(`${valueList.text}`)
+                            //.setImage('http://example.com/math_and_prime.jpg', ``)
+                        )
                     }
                 }
 
