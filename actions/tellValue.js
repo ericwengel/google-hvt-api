@@ -65,7 +65,7 @@ function hvtValueResponse(request, response) {
                 //display 2nd call
                 console.log(vehicleValue);
 
-                var listSelector;
+                var listSelector = [];
                 vehicleValue.forEach(function (element) {
                     listSelector.push(
                         app.buildOptionItem('VALUE')
