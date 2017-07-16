@@ -80,7 +80,7 @@ function hvtValueResponse(request, response) {
 
                         console.log('value', value);
                         // don't allow blank values
-                        if(value.weightedAverageValue != 'null'){
+                        if(value.hasOwnProperty('weightedAveragevalue') && value.weightedAverageValue != 'null'){
                             listSelector.push(
                                 app.buildOptionItem('VALUE', ['test', 'test2'])
                                 .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
