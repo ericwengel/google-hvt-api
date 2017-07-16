@@ -65,15 +65,23 @@ function hvtValueResponse(request, response) {
                 //display 2nd call
                 console.log(vehicleValue);
 
+                // build list of vehicles
                 var listSelector = [];
-                vehicleValue.forEach(function (element) {
-                    listSelector.push(
-                        app.buildOptionItem('VALUE')
-                        .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
-                        .setDescription(`${element.text}`)
-                        .setImage('http://example.com/math_and_prime.jpg', 'This car')
-                    )
-                });
+                for (var i = 0; i < vehicleValue.length; i++) {
+                    var valueList = vehicleValue[i];
+                    for (var key in valueList) {
+                        var value = valueList[key];
+                        // don't allow blank values
+                        if(value.weightedAverageValue != 'null'){
+                            listSelector.push(
+                                app.buildOptionItem('VALUE', ['test', 'test2'])
+                                .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
+                                .setDescription(`${value.text}`)
+                                //.setImage('http://example.com/math_and_prime.jpg', ``)
+                            )
+                        }
+                    }
+                }
 
                 // first value
                 var firstCarFullName = vehicleValue[0].text,
