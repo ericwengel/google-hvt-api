@@ -47,7 +47,7 @@ function hvtValueResponse(request, response) {
             }).then(function (vehicleData) {
 
                 //display 1nd call
-                console.log('First Call: ', vehicleValue);
+                console.log('First Call: ', vehicleValue); 
 
                 // take decode data and make request to api
                 var year = vehicleData.year.id,
