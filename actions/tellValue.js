@@ -1,5 +1,4 @@
 var google = require('actions-on-google').ApiAiApp;
-var ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 var fetch = require('node-fetch');
 
 /**
@@ -13,7 +12,7 @@ module.exports = hvtValueResponse;
 
 function hvtValueResponse(request, response) {
 
-    var GoogleApp = new ActionsSdkApp({
+    var GoogleApp = new google({
         request,
         response
     });
@@ -84,6 +83,16 @@ function hvtValueResponse(request, response) {
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
+                    app.askWithList('Which of these looks good?',
+                        app.buildList('List title')
+                        .addItems([
+                            app.buildOptionItem('SELECTION_KEY_ONE', ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            .setTitle('Title of First List Item'),
+                            app.buildOptionItem('SELECTION_KEY_TWO', ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+                            .setTitle('Title of Second List Item'),
+                        ]));
+
+                    /*
                     app.askWithlist('There seem to be submodels for this vehicle, please choose one below.',
                         app.buildList(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model} Submodels`)
                             .addItems(listSelector));
