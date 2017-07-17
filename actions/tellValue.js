@@ -1,4 +1,5 @@
 var google = require('actions-on-google').ApiAiApp;
+var ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 var fetch = require('node-fetch');
 
 /**
@@ -12,7 +13,7 @@ module.exports = hvtValueResponse;
 
 function hvtValueResponse(request, response) {
 
-    var GoogleApp = new google({
+    var GoogleApp = new ActionsSdkApp({
         request,
         response
     });
