@@ -52,7 +52,7 @@ function hvtValueResponse(request, response) {
                     make = vehicleData.make.id,
                     model = vehicleData.model.id;
 
-                var valueRequestURLBuilder = `${constants.REQUESTU_URLS.VEHICLE_INFO_URL}${year}/${make}/${model}`;
+                var valueRequestURLBuilder = `${constants.REQUEST_URLS.VEHICLE_INFO_URL}${year}/${make}/${model}`;
 
                 // make second call
                 return fetch(valueRequestURLBuilder, {
