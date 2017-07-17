@@ -68,12 +68,14 @@ function hvtValueResponse(request, response) {
 
                 // build list of vehicles
                 var listSelector = [];
-                for (var i = 0; i < vehicleValue.length; i++) {
+                //for (var i = 0; i < vehicleValue.length; i++) {
+                for (var i = 0; i < 10; i++) {
 
-                    console.log('vehiclevalue', vehicleValue.length);
+                    console.log('vehiclevalue', vehicleValue);
 
                     var valueList = vehicleValue[i];                   
                     if(valueList.weightedAverageValue != 'null'){
+                        console.log('valueList', valueList);
                         listSelector.push(
                             app.buildOptionItem('VALUE', ['test', 'test2'])
                             .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
