@@ -74,8 +74,7 @@ function hvtValueResponse(request, response) {
                     var valueList = vehicleValue[i];
                     if (valueList.weightedAverageValue != 'null') {
                         console.log('valueList -- added to array', valueList);
-                        listSelector.push(app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`));
+                        listSelector[i] = app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`);
                     }
                 }
 
