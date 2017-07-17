@@ -67,7 +67,12 @@ function hvtValueResponse(request, response) {
                 console.log('Second Call: ', vehicleValue);
 
                 // build list of vehicles
-                var listSelector = [];
+                var listSelector = [
+                            app.buildOptionItem('SELECTION_KEY_ONE', ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            .setTitle('1969 Ford Mustang GT 2dr Coupe 8-cyl. 351cid/250hp 2bbl'),
+                            app.buildOptionItem('SELECTION_KEY_TWO', ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+                            .setTitle('1969 Ford Mustang Boss 429 2dr SportsRoof  8-cyl. 429cid/375hp 4bbl')];
+                /*
                 //for (var i = 0; i < vehicleValue.length; i++) {
                 for (var i = 0; i < 10; i++) {
                     var valueList = vehicleValue[i];
@@ -79,6 +84,7 @@ function hvtValueResponse(request, response) {
                         )
                     }
                 }
+                */
 
                 console.log(listSelector);
 
