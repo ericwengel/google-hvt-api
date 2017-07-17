@@ -76,21 +76,17 @@ function hvtValueResponse(request, response) {
                         listSelector.push(
                             app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
                             .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
-                            .setDescription(`${valueList.text}`)
                         )
                     }
                 }
+
+                console.log(listSelector);
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
                     app.askWithList('What is your sub model?',
                         app.buildList('1969 Ford Mustang Submodels')
-                        .addItems([
-                            app.buildOptionItem('SELECTION_KEY_ONE', ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle('1969 Ford Mustang GT 2dr Coupe 8-cyl. 351cid/250hp 2bbl'),
-                            app.buildOptionItem('SELECTION_KEY_TWO', ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-                            .setTitle('1969 Ford Mustang Boss 429 2dr SportsRoof  8-cyl. 429cid/375hp 4bbl'),
-                        ]));
+                        .addItems(listSelector));
 
                     /*
                     app.askWithlist('There seem to be submodels for this vehicle, please choose one below.',
