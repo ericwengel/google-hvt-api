@@ -67,24 +67,17 @@ function hvtValueResponse(request, response) {
                 console.log('Second Call: ', vehicleValue);
 
                 // build list of vehicles
-                var listSelector = [
-                            app.buildOptionItem('SELECTION_KEY_ONE', ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle('1969 Ford Mustang GT 2dr Coupe 8-cyl. 351cid/250hp 2bbl'),
-                            app.buildOptionItem('SELECTION_KEY_TWO', ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-                            .setTitle('1969 Ford Mustang Boss 429 2dr SportsRoof  8-cyl. 429cid/375hp 4bbl')];
-                /*
+                var listSelector = [];
+                
                 //for (var i = 0; i < vehicleValue.length; i++) {
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 3; i++) {
                     var valueList = vehicleValue[i];
                     if (valueList.weightedAverageValue != 'null') {
                         console.log('valueList -- added to array', valueList);
-                        listSelector.push(
-                            app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
-                        )
+                        listSelector.push(app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`));
                     }
                 }
-                */
 
                 console.log(listSelector);
 
