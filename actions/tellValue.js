@@ -70,33 +70,36 @@ function hvtValueResponse(request, response) {
                 var listSelector = [];
                 //for (var i = 0; i < vehicleValue.length; i++) {
                 for (var i = 0; i < 10; i++) {
-
-                    console.log('vehiclevalue', vehicleValue);
-
-                    var valueList = vehicleValue[i];                   
-                    if(valueList.weightedAverageValue != 'null'){
-                        console.log('valueList', valueList);
+                    var valueList = vehicleValue[i];
+                    if (valueList.weightedAverageValue != 'null') {
+                        console.log('valueList -- added to array', valueList);
                         listSelector.push(
-                            app.buildOptionItem('VALUE', ['test', 'test2'])
+                            app.buildOptionItem(SELECTION_KEY_ONE, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
                             .setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`)
                             .setDescription(`${valueList.text}`)
-                            //.setImage('http://example.com/math_and_prime.jpg', ``)
                         )
                     }
                 }
 
-                // first value
-                var firstCarFullName = vehicleValue[0].text,
-                    firstCarAverageValue = numberWithCommas(vehicleValue[0].weightedAverageValue);
-
-                var carValue = `The ${firstCarFullName} is worth $${firstCarAverageValue}`;
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
+                    app.askWithlist('There seem to be submodels for this vehicle, please choose one below.',
+                        app.buildList(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model} Submodels`)
+                            .addItems(listSelector));
+                        
+                        /*.addItems([
+                            app.buildOptionItem(SELECTION_KEY_ONE, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            .setTitle('Number one'),
+                            app.buildOptionItem(SELECTION_KEY_TWO, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+                            .setTitle('Number two'),
+                        ]));
+                        */
+
+                    /*
                     app.askWithList(app.buildRichResponse()
                         .addSimpleResponse('Alright'),
                         // Build a list
                         app.buildList('Things to learn about')
-                        // Add the first item to the list
                         .addItems(listSelector)
                     )
 
@@ -123,3 +126,35 @@ function hvtValueResponse(request, response) {
     actionMap.set('tell.value', tellValue);
     GoogleApp.handleRequest(actionMap);
 }
+
+/**
+ * 
+ * List example...
+const app = new ActionsSdkApp({request, response});
+
+function welcomeIntent (app) {
+  app.askWithlist('Which of these looks good?',
+    app.buildList('List title')
+     .addItems([
+       app.buildOptionItem(SELECTION_KEY_ONE,
+         ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+         .setTitle('Number one'),
+       app.buildOptionItem(SELECTION_KEY_TWO,
+         ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+         .setTitle('Number two'),
+     ]));
+}
+
+function optionIntent (app) {
+  if (app.getSelectedOption() === SELECTION_KEY_ONE) {
+    app.tell('Number one is a great choice!');
+  } else {
+    app.tell('Number two is a great choice!');
+  }
+}
+
+const actionMap = new Map();
+actionMap.set(app.StandardIntents.TEXT, welcomeIntent);
+actionMap.set(app.StandardIntents.OPTION, optionIntent);
+app.handleRequest(actionMap);
+ */
