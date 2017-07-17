@@ -20,19 +20,17 @@ function hvtValueResponse(request, response) {
     function tellValue(app) {
 
         // structure API query
-        var year = app.getArgument('Year'),
-            make = app.getArgument('Make'),
-            model = app.getArgument('Model');
-
-        console.log('API.AI Arguments:', `${year} ${make} ${model}`);
-
-        // shape decode strings
         var vehicleString = {
             year: app.getArgument('Year'),
             make: app.getArgument('Make'),
             model: app.getArgument('Model')
         };
+
+        // shape decode strings        
         var vehicleToDecode = JSON.stringify(vehicleString);
+
+        console.log('API.AI Arguments:', `${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`);
+        console.log('HVT API Call: ', constants.REQUESTU_URLS.DECODE_VEHICLE);
 
         // make first call
         var result = fetch(constants.REQUESTU_URLS.DECODE_VEHICLE, {
