@@ -82,11 +82,11 @@ function hvtValueResponse(request, response) {
                     var valueList = vehicleValue[i];
                     if (valueList.weightedAverageValue != 'null') {
                         console.log('valueList -- added to array', valueList);
-                        listSelector.push(app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`));
+                        listSelector.push(app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle('Number one'));
                     }
                 }  
 
-                console.log(app.buildOptionItem());
+                console.log(listSelector);
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
