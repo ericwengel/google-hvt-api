@@ -66,17 +66,8 @@ function hvtValueResponse(request, response) {
                 //display 2nd call
                 console.log('Second Call: ', vehicleValue);
 
-                // build list of vehicles
-                /*var listSelector = [
-                            app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle('Number one'),
-                            app.buildOptionItem(`Choice_2`, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-                            .setTitle('Number two'),
-                        ];
-                */
                 
-                var listSelector = [];
-/*
+               /*
                 //for (var i = 0; i < vehicleValue.length; i++) {
                 for (var i = 1; i < 2; i++) {
                     var valueList = vehicleValue[i];
@@ -85,18 +76,21 @@ function hvtValueResponse(request, response) {
                         listSelector.push(app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle('Number one'));
                     }
                 }  
-
-                console.log(listSelector);
-                console.log(typeof(listSelector));
 */
-                listSelector = [app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle('Number one')];
 
+                // build list of vehicles
+                var listSelector = [
+                            app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            .setTitle('Number one'),
+                            app.buildOptionItem(`Choice_2`, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+                            .setTitle('Number two'),
+                        ];
+                        
                 console.log(listSelector);
                 console.log(typeof(listSelector));
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
-                    console.log('--- select list build here --- ');
                     
                     app.askWithList('What is your sub model?',
                         app.buildList('1969 Ford Mustang Submodels')
