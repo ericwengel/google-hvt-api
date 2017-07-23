@@ -67,22 +67,26 @@ function hvtValueResponse(request, response) {
                 console.log('Second Call: ', vehicleValue);
 
                 // build list of vehicles
-                var listSelector = [
+                /*var listSelector = [
                             app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
                             .setTitle('Number one'),
                             app.buildOptionItem(`Choice_2`, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
                             .setTitle('Number two'),
                         ];
-                /*
+                */
+                
+                var listSelector = [app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            .setTitle('Number one')];
+
                 //for (var i = 0; i < vehicleValue.length; i++) {
-                for (var i = 0; i < 3; i++) {
+                for (var i = 1; i < 2; i++) {
                     var valueList = vehicleValue[i];
                     if (valueList.weightedAverageValue != 'null') {
                         console.log('valueList -- added to array', valueList);
-                        listSelector[i] = app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`);
+                        listSelector.push(app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`));
                     }
-                }
-                */  
+                }  
+                
                 console.log(listSelector);
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
