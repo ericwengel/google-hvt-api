@@ -75,8 +75,7 @@ function hvtValueResponse(request, response) {
                         ];
                 */
                 
-                var listSelector = [app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle('Number one')];
+                var listSelector = [];
 
                 //for (var i = 0; i < vehicleValue.length; i++) {
                 for (var i = 1; i < 2; i++) {
@@ -87,7 +86,7 @@ function hvtValueResponse(request, response) {
                     }
                 }  
 
-                console.log(listSelector);
+                console.log(app.buildOptionItem());
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
