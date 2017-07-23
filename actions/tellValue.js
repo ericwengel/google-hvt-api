@@ -74,9 +74,9 @@ function hvtValueResponse(request, response) {
                             .setTitle('Number two'),
                         ];
                 */
-                /*
+                
                 var listSelector = [];
-
+/*
                 //for (var i = 0; i < vehicleValue.length; i++) {
                 for (var i = 1; i < 2; i++) {
                     var valueList = vehicleValue[i];
