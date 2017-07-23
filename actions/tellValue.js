@@ -87,6 +87,12 @@ function hvtValueResponse(request, response) {
                 }  
 
                 console.log(listSelector);
+                console.log(typeof(listSelector));
+
+                listSelector = [app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle('Number one')];
+
+                console.log(listSelector);
+                console.log(typeof(listSelector));
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
