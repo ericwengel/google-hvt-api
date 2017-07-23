@@ -68,9 +68,9 @@ function hvtValueResponse(request, response) {
 
                 // build list of vehicles
                 var listSelector = [
-                            app.buildOptionItem(SELECTION_KEY_ONE, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
                             .setTitle('Number one'),
-                            app.buildOptionItem(SELECTION_KEY_TWO, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+                            app.buildOptionItem(`Choice_2`, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
                             .setTitle('Number two'),
                         ];
                 /*
