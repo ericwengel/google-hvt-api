@@ -86,11 +86,13 @@ function hvtValueResponse(request, response) {
                         listSelector.push(app.buildOptionItem(`Choice_${i}`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`));
                     }
                 }  
-                
+
                 console.log(listSelector);
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
+                    console.log('--- select list build here --- ');
+                    
                     app.askWithList('What is your sub model?',
                         app.buildList('1969 Ford Mustang Submodels')
                         .addItems(listSelector));
