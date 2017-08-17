@@ -67,48 +67,23 @@ function hvtValueResponse(request, response) {
                 console.log('Second Call: ', vehicleValue);
 
 
-                /*
-                //for (var i = 0; i < vehicleValue.length; i++) {
-                for (var i = 1; i < 2; i++) {
-                    var valueList = vehicleValue[i];
-                    if (valueList.weightedAverageValue != 'null') {
-                        console.log('valueList -- added to array', valueList);
-                        listSelector.push(app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2']).setTitle('Number one'));
-                    }
-                }  
-*/
+
 
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
-                    var list = app.buildList('1969 Ford Mustang Submodels')
-                    list.addItems(app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle('Number one')),
-                        list.addItems(app.buildOptionItem(`Choice_2`, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-                            .setTitle('Number two'));
+                    var list = app.buildList(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model} Submodels`)
+                        //for (var i = 0; i < vehicleValue.length; i++) {
+                    for (var i = 1; i < 6; i++) {
+                        var valueList = vehicleValue[i];
+                        if (valueList.weightedAverageValue != 'null') {
+                            console.log('valueList -- added to array', valueList);
+                            list.addItems(app.buildOptionItem(`Choice_1`)
+                                .setTitle(valueList.text))
+                        }
+                    }
 
-                    app.askWithList('What is your sub model?', list);
-
-                    /*
-                    app.askWithlist('There seem to be submodels for this vehicle, please choose one below.',
-                        app.buildList(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model} Submodels`)
-                            .addItems(listSelector));
-                        
-                        /*.addItems([
-                            app.buildOptionItem(SELECTION_KEY_ONE, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle('Number one'),
-                            app.buildOptionItem(SELECTION_KEY_TWO, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-                            .setTitle('Number two'),
-                        ]));
-                        */
-
-                    /*
-                    app.askWithList(app.buildRichResponse()
-                        .addSimpleResponse('Alright'),
-                        // Build a list
-                        app.buildList('Things to learn about')
-                        .addItems(listSelector)
-                    )
+                    app.askWithList('There seem to be submodels for this vehicle, please choose one below.', list);
 
                     /*app.ask(app.buildRichResponse()
                         .addSimpleResponse(carValue)
