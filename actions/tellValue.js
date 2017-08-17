@@ -40,9 +40,9 @@ function hvtValueResponse(request, response) {
                     'Content-Type': 'application/json'
                 },
                 body: vehicleToDecode
-            }).then(function (response) {
+            }).then(function(response) {
                 return response.json();
-            }).then(function (vehicleData) {
+            }).then(function(vehicleData) {
 
                 //display 1nd call
                 console.log('First Call: ', vehicleData);
@@ -60,14 +60,14 @@ function hvtValueResponse(request, response) {
                 });
 
             })
-            .then(function (response) {
+            .then(function(response) {
                 return response.json();
-            }).then(function (vehicleValue) {
+            }).then(function(vehicleValue) {
                 //display 2nd call
                 console.log('Second Call: ', vehicleValue);
 
-                
-               /*
+
+                /*
                 //for (var i = 0; i < vehicleValue.length; i++) {
                 for (var i = 1; i < 2; i++) {
                     var valueList = vehicleValue[i];
@@ -78,23 +78,16 @@ function hvtValueResponse(request, response) {
                 }  
 */
 
-                // build list of vehicles
-                var listSelector = [
-                            app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-                            .setTitle('Number one'),
-                            app.buildOptionItem(`Choice_2`, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-                            .setTitle('Number two'),
-                        ];
-                        
-                console.log(listSelector);
-                console.log(typeof(listSelector));
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
-                    
-                    app.askWithList('What is your sub model?',
-                        app.buildList('1969 Ford Mustang Submodels')
-                        .addItems(listSelector));
+                    var list = app.buildList('1969 Ford Mustang Submodels')
+                    list.addItems(app.buildOptionItem(`Choice_1`, ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+                            .setTitle('Number one')),
+                        list.addItems(app.buildOptionItem(`Choice_2`, ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+                            .setTitle('Number two'));
+
+                    app.askWithList('What is your sub model?', list);
 
                     /*
                     app.askWithlist('There seem to be submodels for this vehicle, please choose one below.',
@@ -130,7 +123,7 @@ function hvtValueResponse(request, response) {
                 }
 
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log('Request failed', error)
             });
 
