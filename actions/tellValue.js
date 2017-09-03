@@ -29,8 +29,8 @@ function hvtValueResponse(request, response) {
         // shape decode strings        
         var vehicleToDecode = JSON.stringify(vehicleString);
 
-        //console.log('API.AI Arguments:', `${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`);
-        //console.log('HVT API Call: ', constants.REQUEST_URLS.DECODE_VEHICLE);
+        console.log('API.AI Arguments:', `${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`);
+        console.log('HVT API Call: ', constants.REQUEST_URLS.DECODE_VEHICLE);
 
         // make first call
         var result = fetch(constants.REQUEST_URLS.DECODE_VEHICLE, {
@@ -48,9 +48,9 @@ function hvtValueResponse(request, response) {
                 console.log('First Call: ', vehicleData);
 
                 // take decode data and make request to api
-                var year = vehicleData.year.text,
-                    make = vehicleData.make.text,
-                    model = vehicleData.model.text;
+                var year = vehicleData.year.id,
+                    make = vehicleData.make.id,
+                    model = vehicleData.model.id;
 
                 var valueRequestURLBuilder = `${constants.REQUEST_URLS.VEHICLE_INFO_URL}${year}/${make}/${model}`;
 
@@ -117,8 +117,8 @@ function hvtValueResponse(request, response) {
 
     let actionMap = new Map();
     actionMap.set('tell.value', tellValue);
-    actionMap.set(GoogleApp.StandardIntents.OPTION, itemSelected);
+    //actionMap.set(GoogleApp.StandardIntents.OPTION, itemSelected);
     GoogleApp.handleRequest(actionMap);
 
-    console.log('Standard Intents', GoogleApp.StandardIntents);
+    //console.log('Standard Intents', GoogleApp.StandardIntents);
 }
