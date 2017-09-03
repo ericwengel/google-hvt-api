@@ -45,12 +45,12 @@ function hvtValueResponse(request, response) {
             }).then(function(vehicleData) {
 
                 //display 1nd call
-                //console.log('First Call: ', vehicleData);
+                console.log('First Call: ', vehicleData);
 
                 // take decode data and make request to api
-                var year = vehicleData.year.id,
-                    make = vehicleData.make.id,
-                    model = vehicleData.model.id;
+                var year = vehicleData.year.text,
+                    make = vehicleData.make.text,
+                    model = vehicleData.model.text;
 
                 var valueRequestURLBuilder = `${constants.REQUEST_URLS.VEHICLE_INFO_URL}${year}/${make}/${model}`;
 
