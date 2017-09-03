@@ -23,9 +23,9 @@ function hvtValueResponse(request, response) {
 
         // structure API query
         var vehicleString = {
-            year: app.getArgument('Year'),
-            make: app.getArgument('Make'),
-            model: app.getArgument('Model')
+            year: '1967', //app.getArgument('Year'),
+            make: 'ford', //app.getArgument('Make'),
+            model: 'mustang' //app.getArgument('Model')
         };
 
         // shape decode strings        
