@@ -66,32 +66,20 @@ function hvtValueResponse(request, response) {
                 //display 2nd call
                 console.log('Second Call: ', vehicleValue);
 
-
-
-
-
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
                     var list = app.buildList(`${vehicleString.year} ${vehicleString.make} ${vehicleString.model} Submodels`)
-                        //for (var i = 0; i < vehicleValue.length; i++) {
                     for (var i = 1; i < 6; i++) {
                         var valueList = vehicleValue[i];
                         if (valueList.weightedAverageValue != 'null') {
                             console.log('valueList -- added to array', valueList);
-                            list.addItems(app.buildOptionItem(valueList.text)
+                            list.addItems(app.buildOptionItem(valueList.id)
                                 .setTitle(valueList.text))
                         }
                     }
 
                     app.askWithList('There seem to be submodels for this vehicle, please choose one below.', list);
 
-                    /*app.ask(app.buildRichResponse()
-                        .addSimpleResponse(carValue)
-                        .addBasicCard(app.buildBasicCard(carValue)
-                            .setImage('https://o.aolcdn.com/images/dims3/GLOB/crop/4220x2374+0+0/resize/800x450!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/1cce1f0e74ac5eef38a9584739e02479/205232832/2018+Mustang+design+sketch++%283%29.jpg', 'Darth Vader Mustang'))
-                        .addSimpleResponse(constants.USER_PROMPTS.SUCCESS_NEXT));
-                    //.addSuggestions(['Sure', 'No thanks']));
-                    */
 
                 } else {
                     // figure out device compatibility fallback here
@@ -104,39 +92,30 @@ function hvtValueResponse(request, response) {
 
     }
 
+    function itemSelected(app) {
+        // Get the user's selection
+        const param = app.getContextArgument('actions_intent_option',
+            'OPTION').value;
+
+        console.log('Parameter:', param);
+        /*
+        // Compare the user's selections to each of the item's keys
+        if (!param) {
+            app.ask('You did not select any item from the list or carousel');
+        } else if (param === 'MATH_AND_PRIME') {
+            app.ask('42 is an abundant number because the sum of its…');
+        } else if (param === 'EGYPT') {
+            app.ask('42 gods who ruled on the fate of the dead in the ');
+        } else if (param === 'RECIPES') {
+            app.ask('Here\'s a beautifully simple recipe that\'s full ');
+        } else {
+            app.ask('You selected an unknown item from the list or carousel');
+        }
+        */
+    }
+
     let actionMap = new Map();
     actionMap.set('tell.value', tellValue);
+    actionMap.set('itemSelected', itemSelected);
     GoogleApp.handleRequest(actionMap);
 }
-
-/**
- * 
- * List example...
-const app = new ActionsSdkApp({request, response});
-
-function welcomeIntent (app) {
-  app.askWithlist('Which of these looks good?',
-    app.buildList('List title')
-     .addItems([
-       app.buildOptionItem(SELECTION_KEY_ONE,
-         ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-         .setTitle('Number one'),
-       app.buildOptionItem(SELECTION_KEY_TWO,
-         ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-         .setTitle('Number two'),
-     ]));
-}
-
-function optionIntent (app) {
-  if (app.getSelectedOption() === SELECTION_KEY_ONE) {
-    app.tell('Number one is a great choice!');
-  } else {
-    app.tell('Number two is a great choice!');
-  }
-}
-
-const actionMap = new Map();
-actionMap.set(app.StandardIntents.TEXT, welcomeIntent);
-actionMap.set(app.StandardIntents.OPTION, optionIntent);
-app.handleRequest(actionMap);
- */
