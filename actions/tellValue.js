@@ -114,8 +114,10 @@ function hvtValueResponse(request, response) {
         */
     }
 
+    console.log('Standard Intents', GoogleApp.StandardIntents);
+
     let actionMap = new Map();
     actionMap.set('tell.value', tellValue);
-    actionMap.set('itemSelected', itemSelected);
+    actionMap.set(GoogleApp.StandardIntents.OPTION, itemSelected);
     GoogleApp.handleRequest(actionMap);
 }
