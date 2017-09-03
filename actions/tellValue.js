@@ -21,16 +21,16 @@ function hvtValueResponse(request, response) {
 
         // structure API query
         var vehicleString = {
-            year: '1969', //app.getArgument('Year'),
-            make: 'Ford', //app.getArgument('Make'),
-            model: 'Mustang' //app.getArgument('Model')
+            year: app.getArgument('Year'),
+            make: app.getArgument('Make'),
+            model: app.getArgument('Model')
         };
 
         // shape decode strings        
         var vehicleToDecode = JSON.stringify(vehicleString);
 
-        console.log('API.AI Arguments:', `${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`);
-        console.log('HVT API Call: ', constants.REQUEST_URLS.DECODE_VEHICLE);
+        //console.log('API.AI Arguments:', `${vehicleString.year} ${vehicleString.make} ${vehicleString.model}`);
+        //console.log('HVT API Call: ', constants.REQUEST_URLS.DECODE_VEHICLE);
 
         // make first call
         var result = fetch(constants.REQUEST_URLS.DECODE_VEHICLE, {
@@ -45,7 +45,7 @@ function hvtValueResponse(request, response) {
             }).then(function(vehicleData) {
 
                 //display 1nd call
-                console.log('First Call: ', vehicleData);
+                //console.log('First Call: ', vehicleData);
 
                 // take decode data and make request to api
                 var year = vehicleData.year.id,
@@ -64,7 +64,7 @@ function hvtValueResponse(request, response) {
                 return response.json();
             }).then(function(vehicleValue) {
                 //display 2nd call
-                console.log('Second Call: ', vehicleValue);
+                //console.log('Second Call: ', vehicleValue);
 
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
 
@@ -72,7 +72,7 @@ function hvtValueResponse(request, response) {
                     for (var i = 1; i < 6; i++) {
                         var valueList = vehicleValue[i];
                         if (valueList.weightedAverageValue != 'null') {
-                            console.log('valueList -- added to array', valueList);
+                            //console.log('valueList -- added to array', valueList);
                             list.addItems(app.buildOptionItem(valueList.id)
                                 .setTitle(valueList.text))
                         }
@@ -114,10 +114,11 @@ function hvtValueResponse(request, response) {
         */
     }
 
-    console.log('Standard Intents', GoogleApp.StandardIntents);
 
     let actionMap = new Map();
     actionMap.set('tell.value', tellValue);
     actionMap.set(GoogleApp.StandardIntents.OPTION, itemSelected);
     GoogleApp.handleRequest(actionMap);
+
+    console.log('Standard Intents', GoogleApp.StandardIntents);
 }
