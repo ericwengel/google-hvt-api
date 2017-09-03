@@ -95,6 +95,9 @@ function hvtValueResponse(request, response) {
     }
 
     function itemSelected(app) {
+
+        console.log('option selected');
+
         // Get the user's selection
         const param = app.getContextArgument('actions_intent_option',
             'OPTION').value;
@@ -119,7 +122,7 @@ function hvtValueResponse(request, response) {
 
     let actionMap = new Map();
     actionMap.set('tell.value', tellValue);
-    //actionMap.set(GoogleApp.StandardIntents.OPTION, itemSelected);
+    actionMap.set(GoogleApp.StandardIntents.OPTION, itemSelected);
     GoogleApp.handleRequest(actionMap);
 
     //console.log('Standard Intents', GoogleApp.StandardIntents);
