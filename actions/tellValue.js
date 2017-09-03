@@ -26,6 +26,8 @@ function hvtValueResponse(request, response) {
             model: 'Mustang'
         };
 
+        console.log('Raw', app.getRawInput());
+
         // shape decode strings        
         var vehicleToDecode = JSON.stringify(vehicleString);
 
