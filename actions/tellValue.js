@@ -19,6 +19,8 @@ function hvtValueResponse(request, response) {
 
     function tellValue(app) {
 
+        console.log(app);
+
         // structure API query
         var vehicleString = {
             year: app.getArgument('Year'),
