@@ -73,7 +73,7 @@ function hvtValueResponse(request, response) {
                         var valueList = vehicleValue[i];
                         if (valueList.weightedAverageValue != 'null') {
                             //console.log('valueList -- added to array', valueList);
-                            list.addItems(app.buildOptionItem(valueList.id)
+                            list.addItems(app.buildOptionItem(valueList.text)
                                 .setTitle(valueList.text))
                         }
                     }
