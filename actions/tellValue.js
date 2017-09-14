@@ -22,8 +22,8 @@ function hvtValueResponse(request, response) {
         // structure API query
         var vehicleString = {
             year: '1967',
-            make: 'Ford',
-            model: 'Mustang'
+            make: 'chevy',
+            model: 'corvette'
         };
 
         console.log('Raw', app.getRawInput());
