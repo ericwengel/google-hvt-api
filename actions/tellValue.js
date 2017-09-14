@@ -43,6 +43,7 @@ function hvtValueResponse(request, response) {
                 },
                 body: vehicleToDecode
             }).then(function(response) {
+                console.log('zero response', response.json());
                 return response.json();
             }).then(function(vehicleData) {
 
