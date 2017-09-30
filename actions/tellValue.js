@@ -71,9 +71,19 @@ function hvtValueResponse(request, response) {
                 //display 2nd call
                 console.log(vehicleValue);
 
-                // first value
-                var firstCarFullName = vehicleValue[0].text,
-                    firstCarAverageValue = numberWithCommas(vehicleValue[0].weightedAverageValue);
+                //get key with value           
+                var hasValueKey = null;
+                vehicleValue.forEach(function(v, i) {
+                    if (v.weightedAverageValue != null && hasValueKey != null) {
+                        hasValueKey = i;
+                    }
+                });
+
+                console.log('hasValueKey', hasValueKey);
+
+                // first value foound
+                var firstCarFullName = vehicleValue[hasValueKey].text,
+                    firstCarAverageValue = numberWithCommas(vehicleValue[hasValueKey].weightedAverageValue);
 
                 var carValue = `The ${firstCarFullName} is worth $${firstCarAverageValue}`;
                 if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
