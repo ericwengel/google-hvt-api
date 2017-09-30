@@ -74,7 +74,7 @@ function hvtValueResponse(request, response) {
                 //get key with value           
                 var hasValueKey = null;
                 vehicleValue.forEach(function(v, i) {
-                    if (v.weightedAverageValue != null && hasValueKey != null) {
+                    if (v.weightedAverageValue != null && hasValueKey == null) {
                         hasValueKey = i;
                     }
                 });
