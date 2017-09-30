@@ -94,7 +94,7 @@ function hvtValueResponse(request, response) {
                         .addSimpleResponse('Would you like to value another vehicle?')
                         .addSuggestions(['Sure', 'No thanks']));
                 } else {
-                    app.ask('I have no idea what you just said');
+                    app.ask(carValue);
                 }
 
             })
