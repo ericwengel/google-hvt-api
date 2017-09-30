@@ -24,7 +24,9 @@ function hvtValueResponse(request, response) {
             make = app.getArgument('Make'),
             model = app.getArgument('Model');
 
-        console.log(`${year} ${make} ${model}`);
+        console.log('App', app);
+
+        console.log('User Input', `${year} ${make} ${model}`);
 
         // shape decode strings
         var vehicleString = {
