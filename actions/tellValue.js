@@ -76,7 +76,9 @@ function hvtValueResponse(request, response) {
                 vehicleValue.forEach(function(v, i) {
                     if (v.weightedAverageValue != null && v.text != null && hasValueKey == null) {
                         hasValueKey = i;
-                    }
+                    } else {
+                        .addSimpleResponse('We do not have records for the value of that vehicle. Would you like to value a different vehicle?')
+                        .addSuggestions(['Sure', 'No thanks']));
                 });
 
                 console.log('hasValueKey', hasValueKey);
